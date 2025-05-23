@@ -1,0 +1,3 @@
+[submodule "ext/SPIRV-Headers"]
+	path = ext/SPIRV-Headers
+	url = git@github.com:KhronosGroup/SPIRV-Headers.git
