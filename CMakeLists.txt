@@ -148,6 +148,8 @@ set(TINT_UTILS_SOURCES
 	"${PROJECT_SOURCE_DIR}/src/tint/utils/text_generator/text_generator.cc"
 )
 
+set(FETCHCONTENT_QUIET FALSE)
+include(FetchContent)
 
 add_library(${PROJECT_NAME})
 
@@ -173,7 +175,15 @@ target_sources(
 		${TINT_UTILS_SOURCES}
 )
 
-add_subdirectory(ext/SPIRV-Headers)
+if(NOT TARGET SPIRV-Headers::SPIRV-Headers)
+	FetchContent_Declare(
+		spirv_headers
+		GIT_REPOSITORY "git@github.com:KhronosGroup/SPIRV-Headers.git"
+		GIT_TAG main
+		GIT_PROGRESS TRUE
+	)
+	FetchContent_MakeAvailable(spirv_headers)
+endif()
 
 target_link_libraries(
 	${PROJECT_NAME} PRIVATE
