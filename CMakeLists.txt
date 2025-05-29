@@ -151,18 +151,18 @@ set(TINT_UTILS_SOURCES
 set(FETCHCONTENT_QUIET FALSE)
 include(FetchContent)
 
-add_library(${PROJECT_NAME})
+add_library(${PROJECT_NAME} STATIC)
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 target_compile_definitions(
-	${PROJECT_NAME} PRIVATE
+	${PROJECT_NAME} PUBLIC
 		"TINT_BUILD_WGSL_READER=1"
 		"TINT_BUILD_SPV_WRITER=1"
 )
 
 target_include_directories(
-	${PROJECT_NAME} PRIVATE
+	${PROJECT_NAME} PUBLIC
 		"${PROJECT_SOURCE_DIR}"
 		"${PROJECT_SOURCE_DIR}/include"
 )
